@@ -1,0 +1,58 @@
+.InfoPageBack {
+  z-index: 3;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #212121;
+  overflow-y: scroll;
+}
+.infoPage {
+  z-index: 3;
+  background: #212121;
+  flex-direction: column;
+  height: 100%;
+  margin: auto;
+}
+.infoHeader {
+  position: fixed;
+  height: 40px;
+  border-bottom: 1px solid #ffe88d;
+  line-height: 40px;
+  text-align: center;
+  font-size: 18px;
+  width: 100%;
+}
+.BackBtn {
+  position: absolute;
+  left: 10px;
+  font-size: 30px;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+.infoMain {
+  flex-grow: 1;
+  padding: 50px 10px 70px 10px;
+  overflow: scroll;
+}
+.infoTitle {
+  margin-top: 10px;
+  color: #ffff00;
+}
+.infoContent {
+  color: #fff;
+  margin-top: 10px;
+}
+.btnBl {
+  margin-top: 10px;
+  width: 200px;
+}
+
+@media screen and (min-width: 520px) {
+  .infoPage {
+    font-size: 20px;
+    /* height: calc(31%); */
+  }
+}

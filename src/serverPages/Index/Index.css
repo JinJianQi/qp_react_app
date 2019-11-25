@@ -1,0 +1,41 @@
+.serverBody {
+  background: #f6f6f6;
+  width: 100%;
+  color: #333;
+  font-size: 20px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+}
+.serverIndex {
+  width: 100%;
+  color: #333;
+  font-size: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+}
+
+.menu {
+  height: 100%;
+  width: 200px;
+}
+.menuBox {
+  height: 100%;
+}
+.ServerMainBox {
+  flex-grow: 1;
+}
+.serverHeader {
+  background: #212121;
+  color: #ffa631;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+}
+
+table {
+  background: #fff;
+}

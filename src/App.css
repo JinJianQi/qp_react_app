@@ -1,0 +1,41 @@
+/* body{
+  color: #ffe9ad;
+  font-size: 12px;
+  background: #212121;
+} */
+
+body{
+  color: #ffe9ad;
+  font-size: 12px;
+  background: #f6f6f6;
+}
+.footBar {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  height: 60px;
+  background: #212121;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  border-top: 1px solid #ffe9ad;
+}
+
+.btnItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.imgBox {
+  width: 25px;
+  height: 25px;
+  margin-bottom: 8px;
+}
+
+.App{
+  padding-bottom: 80px;
+}

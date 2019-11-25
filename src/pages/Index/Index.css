@@ -1,0 +1,148 @@
+.header {
+  height: 40px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  border-bottom: 1px solid #ffe9ad;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* justify-content: center; */
+  justify-content: space-between;
+  background: #212121;
+  z-index: 1;
+}
+.noticeImg {
+  width: 20px;
+  height: 20px;
+  margin: 0 10px;
+}
+
+.noticeText {
+  flex-grow: 1;
+  text-align: center;
+  overflow: hidden;
+}
+
+.noticeTextanimate {
+  padding-left: 40rpx;
+  white-space: nowrap;
+  white-space: pre;
+  display: inline-block;
+  animation: 20s wordsLoop linear infinite normal;
+  -webkit-animation: 20s wordsLoop linear infinite normal;
+}
+@keyframes wordsLoop {
+  0% {
+    transform: translateX(750rpx);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+@-webkit-keyframes wordsLoop {
+  0% {
+    -webkit-transform: translateX(750rpx);
+  }
+  100% {
+    -webkit-transform: translateX(-100%);
+  }
+}
+
+.Index {
+  background: #212121;
+  position: absolute;
+  left: 0;
+  margin: auto;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  overflow-y: scroll;
+}
+
+.mainBox {
+  background: #212121;
+  margin-bottom: 60px;
+}
+
+.logoImg {
+  height: 70%;
+  margin-left: 8px;
+}
+
+.applyBtn {
+  height: 70%;
+  margin-right: 8px;
+}
+.notice {
+  margin-top: 42px;
+  height: 30px;
+  font-size: 18px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: 1px solid #414141;
+}
+.titleImg {
+  width: calc(100% - 20px);
+  max-width: 700px;
+  margin: 5px 10px;
+}
+
+.listBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin: 0 10px;
+}
+.goodItem {
+  width: 48%;
+  /* height: calc(48%); */
+  margin: 1%;
+  border: 1px solid #ffe9ad;
+  box-sizing: border-box;
+}
+@media screen and (max-width: 520px) {
+  .goodItem {
+    width: 48%;
+    /* height: calc(31%); */
+  }
+}
+
+@media screen and (min-width: 520px) {
+  .goodItem {
+    width: 31%;
+    max-width: 340px;
+    /* height: calc(31%); */
+  }
+}
+.indexImgBox {
+  width: 100%;
+  padding-bottom: 37%;
+  position: relative;
+  overflow: hidden;
+}
+.goodImg {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.goodInfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px 10px 5px 10px;
+}
+.goodInfo > .img1 {
+  height: 100%;
+  width: 40%;
+}
+.goodInfo > .img2 {
+  height: 100%;
+  width: 30%;
+}

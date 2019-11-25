@@ -1,0 +1,50 @@
+button {
+  margin: 10px 10px 0 0;
+}
+.ant-modal-content {
+  padding-top: 20px;
+}
+.ant-modal-close {
+  margin: 10px 0;
+}
+.UserTextReply {
+  max-width: 200px;
+  overflow: hidden;
+}
+.noticeTextanimate {
+  display: inline-block;
+  white-space: nowrap;
+  animation: 20s wordsLoop linear infinite normal;
+}
+@keyframes wordsLoop {
+  0% {
+    transform: translateX(750rpx);
+    -webkit-transform: translateX(750rpx);
+  }
+  100% {
+    transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+  }
+}
+
+.userInputLine {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.userInputLine>.title{
+  width: 50px;
+  margin: 0;
+  color: #212121;
+}
+
+.UserSearchBar{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px;
+}
+.UserSearchBar>Button{
+  margin: 0 0 0 20px;
+}
