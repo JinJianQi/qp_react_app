@@ -107,6 +107,10 @@ export default class User extends Component {
                             }}>点击修改</a>
                         </div >)
                     }
+                },{
+                    title: '操作员',
+                    dataIndex: 'o_user',
+                    key: 'o_user'
                 },
                 {
                     title: '操作',
@@ -115,7 +119,12 @@ export default class User extends Component {
                     render: id => (
                         <div className='btnBox'>
                             <Button type='primary' onClick={() => {
-                                updateStatus({ id, status: 1 }).then(res => {
+                                    let o_user = localStorage.getItem('o_user');
+                                    if(!o_user){
+                                        message.error('请重新登录')
+                                        return 
+                                    }
+                                    updateStatus({ id, status: 1, o_user}).then(res => {
                                     message.success('操作成功')
                                     this.getUserList(this.props.type)
                                 }).catch(e => {
@@ -125,7 +134,12 @@ export default class User extends Component {
                             }}>通过</Button>
                             <Button type='danger'
                                 onClick={() => {
-                                    updateStatus({ id, status: 2 }).then(res => {
+                                    let o_user = localStorage.getItem('o_user');
+                                    if(!o_user){
+                                        message.error('请重新登录')
+                                        return 
+                                    }
+                                    updateStatus({ id, status: 2 , o_user}).then(res => {
                                         message.success('操作成功')
                                         this.getUserList(this.props.type)
                                     }).catch(e => {
@@ -206,7 +220,8 @@ export default class User extends Component {
                         if (dialog.type == '1')
                             updateReply({
                                 id: dialog.id,
-                                reply: dialog.data
+                                reply: dialog.data,
+                                o_user:localStorage.getItem('o_user')
                             }).then(res => {
                                 if (res.err) {
                                     message.error('回复错误')
@@ -237,7 +252,7 @@ export default class User extends Component {
                             }}></TextArea>
                         </div>
                         : <div>
-                            {dialog.input_list.length ? dialog.input_list.map((val, index) =>
+                            {(dialog.input_list&&dialog.input_list.length )? dialog.input_list.map((val, index) =>
                                 <div key={index} className='userInputLine'>
                                     <div className='title'>{val.title}</div>
                                     <div className='value'>{val.value}</div>

@@ -1,17 +1,17 @@
-const Request = require('request')
-const serverUri = 'http://39.106.49.94:8080'
-// const serverUri = 'http://localhost:8080'
-
+var Request = require('request')
+Request = Request.defaults({jar: true})
+// const serverUri = 'http://39.106.49.94:8080'
+const serverUri = 'http://localhost:8080'
 const request = (data) => {
     console.log(data)
     return new Promise((resolve, reject) => {
         Request({
             url: serverUri + data.url,
             method: data.data ? 'POST' : 'GET',
-            body: data.data,
-            header: {
-                'Content-Type': 'application/x-www-form-urlencoded'
+            headers: {
+                "Content-Type": "application/json;charset=UTF-8"
             },
+            body: data.data,
             json: true
         }, (err, res, body) => {
             if (err) {
@@ -46,6 +46,12 @@ const updateOptions = (data) => request({ url: '/option/updateOptions', data })
 const getCardListNoType = (data) => request({ url: '/class/getList', data })
 const updateClass = (data) => request({ url: '/class/update', data })
 
+const updateOLevel = (data) => request({ url: '/operator/update', data })
+const registerOperator = (data) => request({ url: '/operator/register', data })
+const deleteOperator = (data) => request({ url: '/operator/delete', data })
+const loginOperator = (data) => request({ url: '/operator/login', data })
+const getOperatorList = (data) => request({ url: '/operator/getList', data })
+
 export {
     getUserList,
     getCardList,
@@ -63,5 +69,10 @@ export {
     getUserByUser,
     updateReply,
     getCardListNoType,
-    updateClass
+    updateClass,
+    updateOLevel,
+    registerOperator,
+    deleteOperator,
+    loginOperator,
+    getOperatorList
 }

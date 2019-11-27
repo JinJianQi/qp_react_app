@@ -1,0 +1,13 @@
+.InputLine{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+.InputLine>:first-child{
+    width: 130px;
+}
+
+.InputLine>:last-child{
+    margin: 0 0 0 auto;
+}

@@ -1,0 +1,17 @@
+.LoginPage{
+    color: #212121;
+    font-size: 14px;
+    max-width: 300px;
+    margin: 100px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.LoginInput{
+    margin: 10px 0;
+}
+.LoginButton{
+    width: 100%;
+}
+

@@ -44,7 +44,8 @@ ReactDOM.render((
 
     <HashRouter>
         <Route path='/' exact component={asyncComponent(() => load('./BaseRouter'))}></Route>
-        <Route path='/serverIndex' component={asyncComponent(() => load('./serverPages/Index/Index'))}></Route>
+        <Route path='/serverIndex' exact component={asyncComponent(() => load('./serverPages/Index/Index'))}></Route>
+        <Route path='/serverIndex/login' component={asyncComponent(() => load('./serverPages/Login/Login'))}></Route>
     </HashRouter>
 
 

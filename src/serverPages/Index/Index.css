@@ -17,6 +17,11 @@
   flex-direction: row;
   flex-grow: 1;
 }
+.oBox{
+  position: fixed;
+  right: 20px;
+  top: 0;
+}
 
 .menu {
   height: 100%;
