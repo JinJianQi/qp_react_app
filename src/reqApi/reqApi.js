@@ -1,7 +1,7 @@
 var Request = require('request')
 Request = Request.defaults({jar: true})
 // const serverUri = 'http://39.106.49.94:8080'
-const serverUri = 'http://localhost:8080'
+const serverUri = 'http://localhost:8000'
 const request = (data) => {
     console.log(data)
     return new Promise((resolve, reject) => {
