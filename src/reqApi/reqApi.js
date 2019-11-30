@@ -1,32 +1,53 @@
+const axios = require('axios')
 var Request = require('request')
-Request = Request.defaults({jar: true})
+Request = Request.defaults({ jar: true })
 // const serverUri = 'http://39.106.49.94:8080'
-const serverUri = 'http://localhost:8000'
+const serverUri = ''
 const request = (data) => {
-    console.log(data)
-    return new Promise((resolve, reject) => {
-        Request({
-            url: serverUri + data.url,
-            method: data.data ? 'POST' : 'GET',
-            headers: {
-                "Content-Type": "application/json;charset=UTF-8"
-            },
-            body: data.data,
-            json: true
-        }, (err, res, body) => {
-            if (err) {
-                reject({ err: !!err, data: '网络错误' })
-            }
-            else
-                if (body.err) {
-                    reject(body.data)
-                } else
-                    resolve({
-                        err: null,
-                        data: body.data
-                    })
-        })
+
+  return new Promise((resolve, reject) => {
+    axios({
+      url: serverUri + data.url,
+      method: data.data ? 'POST' : 'GET',
+      headers: {
+        "Content-Type": "application/json;charset=UTF-8"
+      },
+      data: data.data,
+      json: true
+    }).then((res) => {
+      resolve({
+        err: null,
+        data: res.data.data
+      })
+    }).catch(e => {
+      reject({
+        err: true,
+        data: '网络错误'
+      })
     })
+    // Request({
+    //   url: serverUri + data.url,
+    //   method: data.data ? 'POST' : 'GET',
+    //   headers: {
+    //     "Content-Type": "application/json;charset=UTF-8"
+    //   },
+    //   body: data.data,
+    //   json: true
+    // }, (err, res, body) => {
+    //   if (err) {
+    //     console.log(err)
+    //     reject({ err: !!err, data: '网络错误' })
+    //   }
+    //   else
+    //     if (body.err) {
+    //       reject(body.data)
+    //     } else
+    //       resolve({
+    //         err: null,
+    //         data: body.data
+    //       })
+    // })
+  })
 }
 
 const getUserList = (data) => request({ url: '/user/getList', data })
@@ -53,26 +74,26 @@ const loginOperator = (data) => request({ url: '/operator/login', data })
 const getOperatorList = (data) => request({ url: '/operator/getList', data })
 
 export {
-    getUserList,
-    getCardList,
-    serverUri,
-    deleteImg,
-    updateGood,
-    deleteGoodR,
-    getGoodInfo,
-    updateStatus,
-    getTypeList,
-    getListBaseType,
-    getOptions,
-    updateOptions,
-    insertUser,
-    getUserByUser,
-    updateReply,
-    getCardListNoType,
-    updateClass,
-    updateOLevel,
-    registerOperator,
-    deleteOperator,
-    loginOperator,
-    getOperatorList
+  getUserList,
+  getCardList,
+  serverUri,
+  deleteImg,
+  updateGood,
+  deleteGoodR,
+  getGoodInfo,
+  updateStatus,
+  getTypeList,
+  getListBaseType,
+  getOptions,
+  updateOptions,
+  insertUser,
+  getUserByUser,
+  updateReply,
+  getCardListNoType,
+  updateClass,
+  updateOLevel,
+  registerOperator,
+  deleteOperator,
+  loginOperator,
+  getOperatorList
 }
