@@ -110,3 +110,19 @@
   text-align: center;
   background: #212121;
 }
+
+.vCodeInput{
+  width: 70%;
+  margin: 0;
+
+}
+.vCodeBox{
+  width: 70%;
+  margin: 5px 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.vCodeImg{
+  width: 30%;
+}

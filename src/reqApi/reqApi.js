@@ -15,6 +15,13 @@ const request = (data) => {
       data: data.data,
       json: true
     }).then((res) => {
+      if (res.data.err) {
+        reject({
+          err: true,
+          data: res.data.data
+        })
+        return
+      }
       resolve({
         err: null,
         data: res.data.data
@@ -72,6 +79,7 @@ const registerOperator = (data) => request({ url: '/operator/register', data })
 const deleteOperator = (data) => request({ url: '/operator/delete', data })
 const loginOperator = (data) => request({ url: '/operator/login', data })
 const getOperatorList = (data) => request({ url: '/operator/getList', data })
+const getCode = () => request({ url: '/code/getCode' })
 
 export {
   getUserList,
@@ -95,5 +103,6 @@ export {
   registerOperator,
   deleteOperator,
   loginOperator,
-  getOperatorList
+  getOperatorList,
+  getCode
 }

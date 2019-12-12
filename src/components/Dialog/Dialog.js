@@ -4,7 +4,7 @@ import { message } from 'antd'
 import closeImg from '../../res/close.png'
 import btnBack from '../../res/btn03.png'
 import titleBack from '../../res/title.png'
-import { insertUser, getUserByUser, getCardList } from '../../reqApi/reqApi'
+import { insertUser, getUserByUser, getCardList, getCode } from '../../reqApi/reqApi'
 import { isNumber } from 'util';
 export default class Dialog extends React.Component {
     state = {
@@ -12,6 +12,7 @@ export default class Dialog extends React.Component {
         user: '',
         vCode: '',
         btnTitle: '',
+        codeBase: '',
         searchShow: false,
         price: null,
         searchRes: [],
@@ -30,7 +31,16 @@ export default class Dialog extends React.Component {
             })
         })
     }
+    getCode() {
+        getCode().then(res => {
+            console.log(res)
+            this.setState({
+                codeBase: res.data
+            })
+        })
+    }
     componentDidMount() {
+        this.getCode()
         this.getClass()
         let { type, input_list } = this.props;
         console.log(input_list)
@@ -66,7 +76,7 @@ export default class Dialog extends React.Component {
     //     })
     // }
     render() {
-        let { title, btnTitle, user, searchShow, searchRes, statusTitle, price, input_list, select_id } = this.state;
+        let { title, codeBase, btnTitle, user, searchShow, searchRes, statusTitle, price, input_list, select_id, vCode } = this.state;
         let { show, type, card_id, cardTitle } = this.props;
         return (
             <div>
@@ -118,6 +128,8 @@ export default class Dialog extends React.Component {
                                     user: e.target.value
                                 })
                             }} placeholder='请填写会员账号' className='input' type="text" />
+
+
                             {type == 0 &&
                                 <select onChange={(e) => {
                                     console.log(e)
@@ -141,6 +153,19 @@ export default class Dialog extends React.Component {
                                 )
                             }
 
+                            <div className='vCodeBox'>
+                                <input value={this.state.vCode} onChange={(e) => {
+                                    this.setState({
+                                        vCode: e.target.value
+                                    })
+                                }}
+                                    placeholder='请填写验证码'
+                                    className='input vCodeInput'
+                                    type="text" />
+                                <img className='vCodeImg' onClick={() => {
+                                    this.getCode()
+                                }} src={'data:image/png;base64,' + codeBase} alt="" />
+                            </div>
                             <div className='btn'>
                                 <div onClick={() => {
                                     if (type == 0) {
@@ -149,7 +174,7 @@ export default class Dialog extends React.Component {
                                             message.error('请输入用户名')
                                             return
                                         }
-                                        getUserByUser({ user, select_id }).then(res => {
+                                        getUserByUser({ user, select_id, vCode }).then(res => {
                                             message.success('操作成功')
                                             console.log(res)
                                             this.setState({
@@ -157,8 +182,8 @@ export default class Dialog extends React.Component {
                                                 searchRes: res.data
                                             })
                                         }).catch(e => {
+                                            message.error(e.data || '添加错误')
                                             console.log(e)
-                                            message.error('操作错误')
                                         })
                                     } else {
                                         let Flag = false;
@@ -178,16 +203,20 @@ export default class Dialog extends React.Component {
                                             message.error('无效的商品')
                                             return;
                                         }
+                                        if (!vCode) {
+                                            message.error('无效的验证码')
+                                            return;
+                                        }
                                         if (!user) {
                                             message.error('请输入正确的用户名')
                                             return;
                                         }
                                         //添加
-                                        insertUser({ user, card_id, price, input_list: input_list_str }).then(res => {
+                                        insertUser({ user, card_id, price, input_list: input_list_str, vCode }).then(res => {
                                             message.success('操作成功')
                                             this.props.onClose()
                                         }).catch(e => {
-                                            message.error('添加错误')
+                                            message.error(e.data || '添加错误')
                                         })
                                     }
                                 }}>{btnTitle}</div>
@@ -195,7 +224,6 @@ export default class Dialog extends React.Component {
                             </div>
                         </div>
                     }
-
                 </div>
                 <div className={show ? 'mask' : 'close'}></div>
             </div>
